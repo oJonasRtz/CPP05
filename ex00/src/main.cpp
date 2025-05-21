@@ -76,9 +76,22 @@ static void	gradeTests(void)
 	delete a;
 }
 
-int	main(void)
+static int	errorOut(void)
 {
-	canonicalTests();
-	gradeTests();
+	std::cout << BRIGHT_RED "Correct input: ./bureaucrat <1 or 2>\n" RESET;
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	std::string	arg;
+
+	if (argc == 1 || argc > 2)
+		return (errorOut());
+	arg = argv[1];
+	if (arg == "1")
+		canonicalTests();
+	else if (arg == "2")
+		gradeTests();
 	return (0);
 }

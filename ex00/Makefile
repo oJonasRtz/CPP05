@@ -1,5 +1,5 @@
 
-NAME = Bureaucrat
+NAME = bureaucrat
 
 CC = c++
 FLAGS = -g3 -Wall -Werror -Wextra -std=c++98
@@ -23,6 +23,11 @@ src/%.o: src/%.cpp
 
 run: all
 	@valgrind ./$(NAME)
+
+test: all
+	@valgrind ./$(NAME) 1
+	@valgrind ./$(NAME) 2
+
 
 clean:
 	@echo "\033[1;32m===========================================\033[0m"
