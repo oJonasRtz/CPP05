@@ -98,9 +98,12 @@ static void	formTest(void)
 	Form	*a = new Form("A", false, 50, 100);
 	Form	*b = new Form(*a);
 	Form	*c = new Form ("C", true, 30, 100);
+	
+	//Try to pass the max grade of a Bureaucrat
+	Form	*d = new Form("D", true, 550, 2345);
 
 	std::cout << "\n\t\tOperator <<\n" << std::string(40, '-') << std::endl;
-	std::cout << *a << "\n" << *b << "\n" << *c << std::endl;
+	std::cout << *a << "\n" << *b << "\n" << *c << "\n" << *d << std::endl;
 
 	std::cout << "\n\t\tAssignment test =\n" << std::string(40, '-') << std::endl;
 	*c = *a;
@@ -110,6 +113,7 @@ static void	formTest(void)
 	delete a;
 	delete b;
 	delete c;
+	delete d;
 }
 
 int	main(int argc, char **argv)

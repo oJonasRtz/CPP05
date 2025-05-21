@@ -1,6 +1,11 @@
 #include "Form.hpp"
 
-Form::Form(const std::string &name, bool isSigned, int toSign, int toExec) : name(name), isSigned(isSigned), gradeToSign(toSign), gradeToExec(toExec)
+static int	checkGrade(int input)
+{
+	return (input > 150 ? 150 : input);
+}
+
+Form::Form(const std::string &name, bool isSigned, int toSign, int toExec) : name(name), isSigned(isSigned), gradeToSign(checkGrade(toSign)), gradeToExec(checkGrade(toExec))
 {
 	std::cout << BRIGHT_GREEN << this->getName() << "(form): constructor called.\n" RESET;
 }
