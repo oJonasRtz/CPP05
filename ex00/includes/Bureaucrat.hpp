@@ -51,4 +51,10 @@ class Bureaucrat
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &other);
 
+typedef struct s_select
+{
+	std::string str;
+	void	(*f)(void);
+}	t_select;
+
 #endif

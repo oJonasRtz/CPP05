@@ -51,14 +51,14 @@ const std::string&	Bureaucrat::getName(void) const
 
 void	Bureaucrat::incrementGrade(unsigned int amount)
 {
-	if (grade - amount < 1)
+	if (grade - (int)amount < 1)
 		throw GradeTooHighException();
 	grade -= amount;
 	std::cout << ORANGE << this->getName() << "(Bureaucrat): incremented to " << grade << RESET << std::endl;
 }
 void	Bureaucrat::decrementGrade(unsigned int amount)
 {
-	if (grade + amount > 150)
+	if (grade + (int)amount > 150)
 		throw (GradeTooLowException());
 	grade += amount;
 	std::cout << ORANGE << this->getName() << "(Bureaucrat): decremented to " << grade << RESET << std::endl;

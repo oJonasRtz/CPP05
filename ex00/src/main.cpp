@@ -27,6 +27,10 @@ static void	tryIncrement(Bureaucrat &a, int n)
 	{
 		a.incrementGrade(n);
 	}
+	catch (const Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	catch (const Bureaucrat::GradeTooHighException &e)
 	{
 		std::cerr << e.what() << std::endl;
@@ -44,6 +48,10 @@ static void	tryDecrement(Bureaucrat &a, unsigned int n)
 		a.decrementGrade(n);
 	}
 	catch (const Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooHighException &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -85,13 +93,17 @@ static int	errorOut(void)
 int	main(int argc, char **argv)
 {
 	std::string	arg;
+	static const t_select	select[2] =
+	{
+		{"1", &canonicalTests},
+		{"2", &gradeTests}
+	};
 
 	if (argc == 1 || argc > 2)
 		return (errorOut());
 	arg = argv[1];
-	if (arg == "1")
-		canonicalTests();
-	else if (arg == "2")
-		gradeTests();
+	for (int i = 0; i < 2; i++)
+		if (select[i].str == arg)
+			select[i].f();
 	return (0);
 }
