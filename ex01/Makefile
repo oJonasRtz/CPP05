@@ -1,11 +1,12 @@
 
-NAME = bureaucrat
+NAME = form
 
 CC = c++
 FLAGS = -g3 -Wall -Werror -Wextra -std=c++98
 
 INCLUDE = includes
 SRC =	Bureaucrat.cpp\
+		Form.cpp\
 		main.cpp
 SRCS = $(addprefix src/, $(SRC))
 OBJS = $(SRCS:.cpp=.o)
@@ -25,9 +26,11 @@ run: all
 	@valgrind ./$(NAME)
 
 test: all
-	@for i in 1 2; do \
+	@for i in 1 2 3; do \
 		valgrind ./$(NAME) $$i;\
 	done
+
+
 clean:
 	@echo "\033[1;32m===========================================\033[0m"
 	@echo "\033[1;32m		OBJECTS REMOVED						\033[0m"
