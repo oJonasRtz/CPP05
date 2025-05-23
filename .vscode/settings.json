@@ -45,6 +45,7 @@
 		"random": "cpp",
 		"tuple": "cpp",
 		"ranges": "cpp",
-		"span": "cpp"
+		"span": "cpp",
+		"fstream": "cpp"
 	}
 }
