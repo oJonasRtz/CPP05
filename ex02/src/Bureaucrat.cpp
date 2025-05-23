@@ -26,22 +26,9 @@ Bureaucrat::~Bureaucrat()
 	std::cout << BRIGHT_RED << this->getName() << "(Bureaucrat): destructor called\n" RESET;
 }
 
-static std::string	itos(int n)
-{
-	std::string	str;
-	if (n == 0)
-		return ("0");
-	while (n > 0)
-	{
-		str.insert(str.begin(), '0' + (n % 10));
-		n /= 10;
-	}
-	return (str);
-}
-
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &other)
 {
-	out << other.getName() + ", bureaucrat grade " + itos((other.getGrade()));
+	out << other.getName() << ", bureaucrat grade " << other.getGrade();
 	return (out);
 }
 

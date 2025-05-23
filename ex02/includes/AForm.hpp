@@ -24,6 +24,9 @@ class AForm
 		int			getGradeToSign(void) const;
 		int			getGradeToExec(void) const;
 
+		//	Setters
+		void	setSign(const bool &sign);
+
 		//	Exception
 		class	GradeTooHighExcept: public std::exception
 		{

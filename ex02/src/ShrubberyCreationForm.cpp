@@ -12,7 +12,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
 	std::cout << BRIGHT_GREEN "ShrubberyCreationForm: assignment operator\n" RESET;
 	if (this != &other)
-		AForm::operator=(other);
+		this->target = other.getTarget();
 	return (*this);
 }
 ShrubberyCreationForm::~ShrubberyCreationForm()
@@ -29,8 +29,13 @@ std::string	ShrubberyCreationForm::getTarget(void) const
 //	Methods
 void	ShrubberyCreationForm::beSigned(const Bureaucrat &other)
 {
-	if (other.getGrade() < this->getGradeToSign())
-		this->beSigned(other);
+	if (other.getGrade() <= this->getGradeToSign())
+	{
+		std::cout << ORANGE << other.getName() << "(bureaucrat): signed " << this->getName() << " \n" RESET;
+		this->setSign(true);
+		return ;
+	}
+	std::cout << ORANGE << other.getName() << "(bureaucrat): Has no grade enough to sign " << this->getName() << "\n" RESET;
 }
 void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
@@ -60,6 +65,10 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 
 std::ostream &operator<<(std::ostream &out, const ShrubberyCreationForm &other)
 {
-	out << "Shrubbery target: " << other.getTarget();
+	out << 
+		"(Shrubbery)target: " << other.getTarget() <<
+		"; Grade to sign: " << other.getGradeToSign() <<
+		"; Grade to execute: " << other.getGradeToExec() <<
+		"; Is signed: " << (other.getIsSigned() ? "yes" : "no");
 	return (out);
 }

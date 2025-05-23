@@ -62,6 +62,11 @@ int			AForm::getGradeToExec(void) const
 	return (gradeToExec);
 }
 
+void	AForm::setSign(const bool &sign)
+{
+	this->isSigned = sign;
+}
+
 // void	AForm::beSigned(const Bureaucrat &other)
 // {
 // 	if (other.getGrade() > gradeToSign)

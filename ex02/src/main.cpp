@@ -112,22 +112,46 @@ static int	errorOut(void)
 
 static void	shrubberyTest(void)
 {
+	std::cout << ORANGE << std::string(40, '-') << "\n" << "\tShrubbery tests\n" << std::string(40, '-') << RESET << std::endl;
 
+	std::cout << std::string(40, '-') << "\n" << "\tConstructors\n" << std::string(40, '-') << std::endl;
 	ShrubberyCreationForm	*a = new ShrubberyCreationForm("test");
+	ShrubberyCreationForm	*e = new ShrubberyCreationForm(*a);
+	ShrubberyCreationForm	*d = new ShrubberyCreationForm("adas");
+	std::cout << *a << "\n" << *d << "\n" << *e << std::endl;
+	*d = *a;
+	std::cout << *d << std::endl;
+	
+	std::cout << std::string(40, '-') << "\n" << "\tOperator <<\n" << std::string(40, '-') << std::endl;
+	std::cout << *a << '\n' << *d << std::endl;
+
+	std::cout << std::string(40, '-') << "\n" << "\tExecute\n" << std::string(40, '-') << std::endl;
 	Bureaucrat				*b = new Bureaucrat("B", 150);
 	Bureaucrat				*c = new Bureaucrat("C", 1);
 
-	std::cout << *a << '\n' << *b << *c << std::endl;
 	a->execute(*b);
 	a->execute(*c);
 
-	delete a;
-	delete b;
+	std::cout << std::string(40, '-') << "\n" << "\tSign\n" << std::string(40, '-') << std::endl;
+	b->signForm(*a);
+	std::cout << *a << std::endl;
+	c->signForm(*a);
+	std::cout << *a << std::endl;
+
 	delete c;
+	delete b;
+
+	std::cout << std::string(40, '-') << "\n" << "\tdestructors\n" << std::string(40, '-') << std::endl;
+	delete a;
+	delete d;
+	delete e;
 }
 
 int	main(int argc, char **argv)
 {
+	if (argc == 1 || argc > 2)
+		return (errorOut());
+
 	const int	len = 3;
 	std::string	arg;
 	static const t_select	select[len] =
@@ -136,9 +160,6 @@ int	main(int argc, char **argv)
 		{"2", &gradeTests},
 		{"3", &shrubberyTest}
 	};
-
-	if (argc == 1 || argc > 2)
-		return (errorOut());
 	arg = argv[1];
 	for (int i = 0; i < len; i++)
 		if (select[i].str == arg)
