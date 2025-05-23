@@ -81,8 +81,15 @@ static void	gradeTests(void)
 
 	std::cout << std::string(40, '-') << "\n" << "\tFinal-stats\n" << std::string(40, '-') << std::endl;
 	std::cout << ORANGE << *a << "\n" RESET << std::endl;
+	
+	std::cout << std::string(40, '-') << "\n" << "\tGrade set tests >150 and <0\n" << std::string(40, '-') << std::endl;
+	Bureaucrat	*b = new Bureaucrat("B", 200);
+	Bureaucrat	*c = new Bureaucrat("C", -5);
+	std::cout  << *b << "\n" << *c << "\n" << std::endl;
 
 	delete a;
+	delete b;
+	delete c;
 }
 
 static int	errorOut(void)
@@ -116,15 +123,26 @@ static void	formTest(void)
 	delete d;
 }
 
+static void	formGradeTest(void)
+{
+	std::cout << ORANGE << std::string(40, '-') << "\n" << "\tForm Grade test >150 and <0\n" << std::string(40, '-') << RESET << std::endl;
+
+	Form	*a = new Form("A", false, 200, -500);
+
+	std::cout << *a << "\n";
+	delete a;
+}
+
 int	main(int argc, char **argv)
 {
-	const int	len = 3;
+	const int	len = 4;
 	std::string	arg;
 	static const t_select	select[len] =
 	{
 		{"1", &canonicalTests},
 		{"2", &gradeTests},
-		{"3", &formTest}
+		{"3", &formTest},
+		{"4", &formGradeTest}
 	};
 
 	if (argc == 1 || argc > 2)

@@ -1,6 +1,11 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name), grade(grade)
+static int	checkGrade(int input)
+{
+	return (input > 150 ? 150 : input <= 0 ? 1 : input);
+}
+
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name), grade(checkGrade(grade))
 {
 	std::cout << BRIGHT_GREEN << this->getName() << "(Bureaucrat): constructor called\n" RESET;
 }

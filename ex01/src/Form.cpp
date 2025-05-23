@@ -2,7 +2,7 @@
 
 static int	checkGrade(int input)
 {
-	return (input > 150 ? 150 : input);
+	return (input > 150 ? 150 : input <= 0 ? 1 : input);
 }
 
 Form::Form(const std::string &name, bool isSigned, int toSign, int toExec) : name(name), isSigned(isSigned), gradeToSign(checkGrade(toSign)), gradeToExec(checkGrade(toExec))
