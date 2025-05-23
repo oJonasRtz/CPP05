@@ -16,7 +16,7 @@ class Bureaucrat
 		const std::string	name;
 		int					grade;
 	public:
-		Bureaucrat(const std::string &name, int grade);
+		Bureaucrat(const std::string &name, int grad);
 		Bureaucrat(const Bureaucrat &other);
 		Bureaucrat	&operator=(const Bureaucrat &other);
 		~Bureaucrat();
@@ -35,7 +35,7 @@ class Bureaucrat
 			public:
 				virtual const char	*what(void) const throw()
 				{
-					return (ORANGE "Grade too high to increment." RESET);
+					return (ORANGE "Grade too high." RESET);
 				}
 
 		};
@@ -44,7 +44,7 @@ class Bureaucrat
 			public:
 				virtual const char	*what(void) const throw()
 				{
-					return (ORANGE "Grade too low do decrement." RESET);
+					return (ORANGE "Grade too low." RESET);
 				}
 		};
 };

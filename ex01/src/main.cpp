@@ -83,13 +83,24 @@ static void	gradeTests(void)
 	std::cout << ORANGE << *a << "\n" RESET << std::endl;
 	
 	std::cout << std::string(40, '-') << "\n" << "\tGrade set tests >150 and <0\n" << std::string(40, '-') << std::endl;
-	Bureaucrat	*b = new Bureaucrat("B", 200);
-	Bureaucrat	*c = new Bureaucrat("C", -5);
-	std::cout  << *b << "\n" << *c << "\n" << std::endl;
-
+	try
+	{
+		Bureaucrat	*b = new Bureaucrat("B", -6);
+		std::cout  << *b << "\n" << "\n" << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooHighException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception found\n";
+	}
 	delete a;
-	delete b;
-	delete c;
 }
 
 static int	errorOut(void)
@@ -102,15 +113,12 @@ static void	formTest(void)
 {
 	std::cout << ORANGE << std::string(40, '-') << "\n" << "\tForm Canonical Ortodox tests\n" << std::string(40, '-') << RESET << std::endl;
 	std::cout << "\t\tConstructors\n" << std::string(40, '-') << std::endl;
-	Form	*a = new Form("A", false, 50, 100);
+	Form	*a = new Form("A", 50, 100);
 	Form	*b = new Form(*a);
-	Form	*c = new Form ("C", true, 30, 100);
-	
-	//Try to pass the max grade of a Bureaucrat
-	Form	*d = new Form("D", true, 550, 2345);
+	Form	*c = new Form ("C", 30, 100);
 
 	std::cout << "\n\t\tOperator <<\n" << std::string(40, '-') << std::endl;
-	std::cout << *a << "\n" << *b << "\n" << *c << "\n" << *d << std::endl;
+	std::cout << *a << "\n" << *b << "\n" << *c << "\n" << std::endl;
 
 	std::cout << "\n\t\tAssignment test =\n" << std::string(40, '-') << std::endl;
 	*c = *a;
@@ -120,17 +128,30 @@ static void	formTest(void)
 	delete a;
 	delete b;
 	delete c;
-	delete d;
 }
 
 static void	formGradeTest(void)
 {
 	std::cout << ORANGE << std::string(40, '-') << "\n" << "\tForm Grade test >150 and <0\n" << std::string(40, '-') << RESET << std::endl;
 
-	Form	*a = new Form("A", false, 200, -500);
-
-	std::cout << *a << "\n";
-	delete a;
+	try
+	{
+		Form	*a = new Form("A", 200, -500);
+		std::cout << *a << "\n";
+		delete a;
+	}
+	catch (const Form::GradeTooHighExcept &e)
+	{
+		std::cerr << BRIGHT_RED << e.what() << "\n" RESET;
+	}
+	catch (const Form::GradeTooLowExcept &e)
+	{
+		std::cerr << BRIGHT_RED << e.what() << "\n" RESET;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << BRIGHT_RED "Exception detected/n" RESET;
+	}
 }
 
 int	main(int argc, char **argv)

@@ -8,6 +8,7 @@
 # define RESET "\033[0m"
 
 #include <iostream>
+#include "Form.hpp"
 #include <string>
 
 class Bureaucrat
@@ -16,7 +17,7 @@ class Bureaucrat
 		const std::string	name;
 		int					grade;
 	public:
-		Bureaucrat(const std::string &name, int grade);
+		Bureaucrat(const std::string &name, int grad);
 		Bureaucrat(const Bureaucrat &other);
 		Bureaucrat	&operator=(const Bureaucrat &other);
 		~Bureaucrat();
@@ -24,6 +25,7 @@ class Bureaucrat
 		//	Methods
 		void	incrementGrade(unsigned int amount);
 		void	decrementGrade(unsigned int amount);
+		// void	signForm(const Form &other);
 
 		//	Getters
 		int					getGrade(void) const;
@@ -35,7 +37,7 @@ class Bureaucrat
 			public:
 				virtual const char	*what(void) const throw()
 				{
-					return (ORANGE "Grade too high to increment." RESET);
+					return ("Grade too high.");
 				}
 
 		};
@@ -44,7 +46,7 @@ class Bureaucrat
 			public:
 				virtual const char	*what(void) const throw()
 				{
-					return (ORANGE "Grade too low do decrement." RESET);
+					return ("Grade too low.");
 				}
 		};
 };

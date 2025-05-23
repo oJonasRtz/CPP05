@@ -82,13 +82,24 @@ static void	gradeTests(void)
 	std::cout << ORANGE << *a << "\n" RESET << std::endl;
 	
 	std::cout << std::string(40, '-') << "\n" << "\tGrade set tests >150 and <0\n" << std::string(40, '-') << std::endl;
-	Bureaucrat	*b = new Bureaucrat("B", 200);
-	Bureaucrat	*c = new Bureaucrat("C", -5);
-	std::cout  << *b << "\n" << *c << "\n" << std::endl;
-
+	try
+	{
+		Bureaucrat	*b = new Bureaucrat("B", -6);
+		std::cout  << *b << "\n" << "\n" << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooHighException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception found\n";
+	}
 	delete a;
-	delete b;
-	delete c;
 }
 
 static int	errorOut(void)

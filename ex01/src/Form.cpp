@@ -1,12 +1,12 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
-static int	checkGrade(int input)
+Form::Form(const std::string &name, int toSign, int toExec) : name(name), isSigned(false), gradeToSign(toSign), gradeToExec(toExec)
 {
-	return (input > 150 ? 150 : input <= 0 ? 1 : input);
-}
-
-Form::Form(const std::string &name, bool isSigned, int toSign, int toExec) : name(name), isSigned(isSigned), gradeToSign(checkGrade(toSign)), gradeToExec(checkGrade(toExec))
-{
+	if (toSign > 150 || toExec > 150)
+		throw (GradeTooLowExcept());
+	else if (toSign <= 0 || toExec <= 0)
+		throw (GradeTooHighExcept());
 	std::cout << BRIGHT_GREEN << this->getName() << "(form): constructor called.\n" RESET;
 }
 Form::Form(const Form &other) : name(other.getName()), isSigned(other.getIsSigned()), gradeToSign(other.getGradeToSign()), gradeToExec(other.getGradeToExec())
@@ -60,4 +60,10 @@ int			Form::getGradeToSign(void) const
 int			Form::getGradeToExec(void) const
 {
 	return (gradeToExec);
+}
+
+void	Form::beSigned(const Bureaucrat &other)
+{
+	if (other.getGrade() <= gradeToSign)
+		this->isSigned = true;
 }
