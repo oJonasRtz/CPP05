@@ -68,4 +68,7 @@ void	Bureaucrat::decrementGrade(unsigned int amount)
 	grade += amount;
 	std::cout << ORANGE << this->getName() << "(Bureaucrat): decremented to " << grade << RESET << std::endl;
 }
-
+void	Bureaucrat::signForm(Form &other)
+{
+	other.beSigned(*this);
+}

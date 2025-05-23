@@ -26,7 +26,7 @@ run: all
 	@valgrind ./$(NAME)
 
 test: all
-	@for i in $(shell seq 1 4); do \
+	@for i in $(shell seq 1 5); do \
 		valgrind ./$(NAME) $$i;\
 	done
 

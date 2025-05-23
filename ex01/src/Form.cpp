@@ -64,6 +64,11 @@ int			Form::getGradeToExec(void) const
 
 void	Form::beSigned(const Bureaucrat &other)
 {
-	if (other.getGrade() <= gradeToSign)
-		this->isSigned = true;
+	if (other.getGrade() > gradeToSign)
+	{
+		std::cout << ORANGE << other.getName() << "(bureaucrat): Has no grade enough to sign " << this->getName() << "\n" RESET;
+		return ;
+	}
+	this->isSigned = true;
+	std::cout << ORANGE << other.getName() << "(bureaucrat): signed " << this->getName() << " \n" RESET;
 }

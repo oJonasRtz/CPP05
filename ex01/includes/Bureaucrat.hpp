@@ -25,7 +25,7 @@ class Bureaucrat
 		//	Methods
 		void	incrementGrade(unsigned int amount);
 		void	decrementGrade(unsigned int amount);
-		// void	signForm(const Form &other);
+		void	signForm(Form &other);
 
 		//	Getters
 		int					getGrade(void) const;

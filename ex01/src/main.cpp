@@ -154,16 +154,40 @@ static void	formGradeTest(void)
 	}
 }
 
+static void	signTest(void)
+{
+	std::cout << ORANGE << std::string(40, '-') << "\n" << "\tForm Sign test\n" << std::string(40, '-') << RESET << std::endl;
+
+	std::cout << std::string(40, '-') << "\n" << "\tGrade enough\n" << std::string(40, '-') << std::endl;
+	Bureaucrat	*a =  new Bureaucrat("A", 50);
+	Form		*b = new Form("B", 50, 2);
+	std::cout << *a << "\n" << *b << std::endl;
+	a->signForm(*b);
+	std::cout << *b << std::endl;
+	delete a;
+	delete b;
+	std::cout << std::string(40, '-') << "\n" << "\tNo grade enough\n" << std::string(40, '-') << std::endl;
+	Bureaucrat	*c =  new Bureaucrat("C", 70);
+	Form		*d = new Form("D", 50, 2);
+	std::cout << *c << "\n" << *d << std::endl;
+	c->signForm(*d);
+	std::cout << *d << std::endl;
+	delete c;
+	delete d;
+
+}
+
 int	main(int argc, char **argv)
 {
-	const int	len = 4;
+	const int	len = 5;
 	std::string	arg;
 	static const t_select	select[len] =
 	{
 		{"1", &canonicalTests},
 		{"2", &gradeTests},
 		{"3", &formTest},
-		{"4", &formGradeTest}
+		{"4", &formGradeTest},
+		{"5", &signTest}
 	};
 
 	if (argc == 1 || argc > 2)
