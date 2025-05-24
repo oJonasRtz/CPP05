@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyResquestForm.hpp"
 
 static void	canonicalTests(void)
 {
@@ -147,18 +148,56 @@ static void	shrubberyTest(void)
 	delete e;
 }
 
+static void	robotTest(void)
+{
+	std::cout << ORANGE << std::string(40, '-') << "\n" << "\tRobot tests\n" << std::string(40, '-') << RESET << std::endl;
+
+	std::cout << std::string(40, '-') << "\n" << "\tConstructors\n" << std::string(40, '-') << std::endl;
+	RobotomyResquestForm	*a = new RobotomyResquestForm("test");
+	RobotomyResquestForm	*e = new RobotomyResquestForm(*a);
+	RobotomyResquestForm	*d = new RobotomyResquestForm("adas");
+	std::cout << *a << "\n" << *d << "\n" << *e << std::endl;
+	*d = *a;
+	std::cout << *d << std::endl;
+	
+	std::cout << std::string(40, '-') << "\n" << "\tOperator <<\n" << std::string(40, '-') << std::endl;
+	std::cout << *a << '\n' << *d << std::endl;
+
+	std::cout << std::string(40, '-') << "\n" << "\tExecute\n" << std::string(40, '-') << std::endl;
+	Bureaucrat				*b = new Bureaucrat("B", 150);
+	Bureaucrat				*c = new Bureaucrat("C", 1);
+
+	for (int i = 0; i < 10; i++)
+		a->execute(*c);
+
+	std::cout << std::string(40, '-') << "\n" << "\tSign\n" << std::string(40, '-') << std::endl;
+	b->signForm(*a);
+	std::cout << *a << std::endl;
+	c->signForm(*a);
+	std::cout << *a << std::endl;
+
+	delete c;
+	delete b;
+
+	std::cout << std::string(40, '-') << "\n" << "\tdestructors\n" << std::string(40, '-') << std::endl;
+	delete a;
+	delete d;
+	delete e;
+}
+
 int	main(int argc, char **argv)
 {
 	if (argc == 1 || argc > 2)
 		return (errorOut());
 
-	const int	len = 3;
+	const int	len = 4;
 	std::string	arg;
 	static const t_select	select[len] =
 	{
 		{"1", &canonicalTests},
 		{"2", &gradeTests},
-		{"3", &shrubberyTest}
+		{"3", &shrubberyTest},
+		{"4", &robotTest}
 	};
 	arg = argv[1];
 	for (int i = 0; i < len; i++)

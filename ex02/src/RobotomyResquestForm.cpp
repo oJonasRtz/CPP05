@@ -29,15 +29,27 @@ std::string RobotomyResquestForm::getTarget(void) const
 void	RobotomyResquestForm::beSigned(const Bureaucrat &other)
 {
 	if (other.getGrade() <= this->getGradeToSign())
-		this->beSigned(other);
+		this->setSign(true);
 }
 void	RobotomyResquestForm::execute(Bureaucrat const &executor) const
 {
-	(void)executor;
+	if (executor.getGrade() <= this->getGradeToExec())
+	{
+		if (std::rand() & 1)
+			std::cout << ORANGE << executor.getName() << "(bureaucrat): " << this->getTarget() << " has been robotomized\n" RESET;
+		else
+			std::cout << ORANGE << executor.getName() << "(bureaucrat): " << "robotomy failed\n" RESET;
+		return ;
+	}
+	std::cout << ORANGE << executor.getName() << "(bureaucrat): has no grade enough to execute\n" RESET;
 }
 
 std::ostream	&operator<<(std::ostream &out, const RobotomyResquestForm &other)
 {
-	out << "(Robot)target: " << other.getTarget();
+	out << 
+		"(Robot)target: " << other.getTarget() <<
+		"; Grade to sign: " << other.getGradeToSign() <<
+		"; Grade to execute: " << other.getGradeToExec() <<
+		"; Is signed: " << (other.getIsSigned() ? "yes" : "no");
 	return (out);
 }
