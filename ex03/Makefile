@@ -43,6 +43,7 @@ clean:
 	@echo "\033[1;32m		OBJECTS REMOVED						\033[0m"
 	@echo "\033[1;32m===========================================\033[0m"
 	@$(RM) $(OBJS)
+	@$(RM) Canonical_shrubbery
 
 fclean: clean
 	@echo "\033[1;32m===========================================\033[0m"
