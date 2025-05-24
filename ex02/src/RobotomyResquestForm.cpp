@@ -29,7 +29,12 @@ std::string RobotomyResquestForm::getTarget(void) const
 void	RobotomyResquestForm::beSigned(const Bureaucrat &other)
 {
 	if (other.getGrade() <= this->getGradeToSign())
+	{
+		std::cout << ORANGE << other.getName() << "(boreaucrat): has signed " << this->getName() << RESET << std::endl;
 		this->setSign(true);
+		return ;
+	}
+	std::cout << ORANGE << other.getName() << "(boreaucrat): has no grade to sign " << this->getName() << RESET << std::endl;
 }
 void	RobotomyResquestForm::execute(Bureaucrat const &executor) const
 {

@@ -59,3 +59,13 @@ void	Bureaucrat::signForm(AForm &other)
 {
 	other.beSigned(*this);
 }
+
+void	Bureaucrat::executeForm(const AForm &other) const
+{
+	if (other.getIsSigned())
+	{
+		other.execute(*this);
+		return ;
+	}
+	std::cout << ORANGE << this->getName() << "(boreaucrat): the form isn't signed.\n" << RESET;
+}

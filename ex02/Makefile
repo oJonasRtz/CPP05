@@ -29,7 +29,7 @@ run: all
 	@valgrind ./$(NAME)
 
 test: all
-	@for i in $(shell seq 1 5); do \
+	@for i in $(shell seq 1 6); do \
 		valgrind ./$(NAME) $$i; \
 		if [ $$i -eq 3 ]; then \
 			cat test_shrubbery; \

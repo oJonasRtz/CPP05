@@ -31,11 +31,11 @@ void	ShrubberyCreationForm::beSigned(const Bureaucrat &other)
 {
 	if (other.getGrade() <= this->getGradeToSign())
 	{
-		std::cout << ORANGE << other.getName() << "(bureaucrat): signed " << this->getName() << " \n" RESET;
+		std::cout << ORANGE << other.getName() << "(boreaucrat): has signed " << this->getName() << RESET << std::endl;
 		this->setSign(true);
 		return ;
 	}
-	std::cout << ORANGE << other.getName() << "(bureaucrat): Has no grade enough to sign " << this->getName() << "\n" RESET;
+	std::cout << ORANGE << other.getName() << "(boreaucrat): has no grade to sign " << this->getName() << RESET << std::endl;
 }
 void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
